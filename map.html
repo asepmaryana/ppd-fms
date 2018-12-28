@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="mapsApp">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Gmap Demo</title>
+	<link rel="stylesheet" href="assets/css/maps.css"/>
+	<script src="assets/lib/angular/angular.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAN80JIVnzv9mIHkliT3P7y4Q9bhJDNzfM&language=en"></script>
+	<script type="text/javascript" src="assets/js/maps.js"></script>
+</head>
+<body>
+<div ng-controller="MapCtrl">
+    <div id="map"></div>
+    <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+         <a id="country_container" href="#" ng-click="openInfoWindow($event, marker)">
+         <label id="names" >{{marker.title}}</label></a>
+    </div>
+</div>
+</body>
+</html>

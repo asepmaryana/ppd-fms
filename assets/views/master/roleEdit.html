@@ -1,0 +1,28 @@
+<div class="modal-content">
+	<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times"></i> </button>
+	<div class="modal-header">
+		<h3 class="modal-title" ng-model="title">{{title}}</h3>
+	</div>
+	<div class="modal-body">
+		<form name="formEdit" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="nama">Role :</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" ng-model="data.name" required/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="text-right">
+			<button class="btn btn-sm btn-primary" type="button" ng-click="save(data);" ng-disabled="isClean() || formEdit.$invalid">
+				<i class="fa fa-check"></i> {{buttonText}}
+			</button>
+			<button class="btn btn-sm" type="button" ng-click="cancel()"><i class="fa fa-times"></i> Cancel</button>  
+		</div>
+	</div>
+</div>

@@ -1,0 +1,133 @@
+<section class="scrollable padder">
+	<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+		<li><a href="#/app/dashboard"><i class="fa fa-home"></i> Home</a></li>
+		<li class="active">Bus Driving Record</li>
+	</ul>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">Bus Driving Record</header>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="background-color: #eee">Reg Date</td>
+								<td>{{bus.reg_date}}</td>
+								<td style="background-color: #eee">Made Date</td>
+								<td>{{bus.made_date}}</td>
+								<td style="background-color: #eee">Model</td>
+								<td>{{bus.model_no}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Bus ID</td>
+								<td>{{bus.code}}</td>
+								<td style="background-color: #eee">Car Number</td>
+								<td>{{bus.car_number}}</td>
+								<td style="background-color: #eee">Route (Line)</td>
+								<td>{{bus.route_line}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Made Company</td>
+								<td>{{bus.manufacture_company}}</td>
+								<td style="background-color: #eee">Service Status</td>
+								<td>{{bus.service_status}}</td>
+								<td style="background-color: #eee">Service Group</td>
+								<td>{{bus.service_group}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Car Speed</td>
+								<td>{{bus.speed}} Km/hr</td>
+								<td style="background-color: #eee">Latitude</td>
+								<td>{{bus.latitude}}</td>
+								<td style="background-color: #eee">Longitude</td>
+								<td>{{bus.longitude}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="panel panel-default">
+				<header class="panel-heading">
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<label>Periode </label>
+							<input type="text" class="form-control" id="sdate" placeholder="" ng-model="crit.sdate"/>
+						</div>
+						<div class="form-group">
+							<label> ~ </label>
+							<input type="text" class="form-control" id="edate" placeholder="" ng-model="crit.edate"/>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><a ng-click="setPage(1, '')">View</a></li>
+								<!-- <li><a ng-click="setPage(1, 'xls')">Excel</a></li> -->
+							</ul>
+						</div>
+					</form>
+				</header>
+				<div class="panel-body">
+					<div class="alert alert-info" ng-if="rows.content.length == 0">No record found.</div>
+					<table class="table table-bordered" ng-if="rows.content.length > 0">
+						<thead>
+							<tr>
+								<th class="text-center">No</th>
+								<th class="text-center">Record Time</th>
+								<th class="text-center">Latitude</th>
+								<th class="text-center">Longitude</th>
+								<th class="text-center">Speed (Km/hr)</th>
+								<th class="text-center">Distance (m)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in rows.content">
+								<td class="text-center">{{(page-1)*size + $index + 1}}</td>
+								<td class="text-center">{{r.reg_date_time}}</td>
+								<td class="text-center">{{r.latitude}}</td>
+								<td class="text-center">{{r.longitude}}</td>
+								<td class="text-center">{{r.speed}}</td>
+								<td class="text-center">{{r.distance}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="col-sm-12" ng-if="rows.totalPage > 1">
+						<div class="col-sm-2">
+							<button ng-disabled="rows.first" ng-click="setPage(1, '')" class="btn btn-sm btn-primary btn-block"><i class="fa fa-angle-double-left"></i> First</button>
+						</div>
+						<div class="col-sm-2">
+							<button ng-disabled="rows.first" ng-click="setPage(page - 1, '')" class="btn btn-sm btn-primary btn-block"><i class="fa fa-angle-left"></i> Prev</button>
+						</div>
+						<div class="col-sm-1">
+							<label class="pull-right">Page :</label>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" ng-model="cpage" ng-change="setPage(cpage, '')">
+								<option ng-repeat="p in pages" ng-selected="p===page" value="{{p}}">{{p}}</option>
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<label class="pull-left">Of : {{rows.totalPage}}</label>
+						</div>
+						<div class="col-sm-2">
+							<button ng-disabled="rows.last" ng-click="setPage(page + 1, '')" class="btn btn-sm btn-primary btn-block">Next <i class="fa fa-angle-right"></i></button>
+						</div>
+						<div class="col-sm-2">
+							<button ng-disabled="rows.last" ng-click="setPage(rows.totalPage, '')" class="btn btn-sm btn-primary btn-block">Last <i class="fa fa-angle-double-right"></i></button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+$(document).ready(function() {
+	var datePickConfig	= {autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'};
+    jQuery('#sdate').datepicker(datePickConfig);
+    jQuery('#edate').datepicker(datePickConfig);
+});
+</script>

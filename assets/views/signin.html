@@ -1,0 +1,21 @@
+			<header class="panel-heading text-center">
+          		<strong>Sign in</strong>
+        	</header>
+        	<form name="formLogin" role="form" class="panel-body wrapper-lg">
+        		<div class="form-group">
+            		<label class="control-label">Username</label>
+            		<input type="text" placeholder="" class="form-control input-lg" ng-model="data.username" ng-keypress="enterPressed($event)" required/>
+          		</div>
+          		<div class="form-group">
+            		<label class="control-label">Password</label>
+            		<input type="password" placeholder="" class="form-control input-lg" ng-model="data.password" ng-keypress="enterPressed($event)" required/>
+          		</div>
+          		<div class="checkbox">
+		            <label><input type="checkbox" ng-model="data.remember" ng-checked="0"> Keep me logged in </label>
+          		</div>
+          		<a href="#/welcome/reset" class="pull-right m-t-xs"><small>Forgot password ?</small></a>
+          		<button type="button" class="btn btn-primary" ng-click="login(data)" ng-disabled="formLogin.$invalid">Sign in</button>
+          		<div class="line line-dashed"></div>
+          		<p class="text-muted text-center"><small>Do not have an account ?</small></p>
+          		<a href="#/welcome/signup" class="btn btn-default btn-block">Create an account</a>
+        	</form>

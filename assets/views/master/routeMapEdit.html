@@ -1,0 +1,79 @@
+<div class="modal-content">
+	<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times"></i> </button>
+	<div class="modal-header">
+		<h3 class="modal-title" ng-model="title">{{title}}</h3>
+	</div>
+	<div class="modal-body">
+		<form name="formEdit" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="col-sm-12">
+				
+					<div class="form-group">
+						<label class="control-label col-sm-2">Reg Date :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.reg_date" id="reg_date" maxlength="10"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Map No :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.map_no" maxlength="10"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Service Group :</label>
+						<div class="col-sm-2">
+							<select class="form-control" ng-model="data.service_group_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in serviceGroups" value="{{p.id}}" ng-selected="data.service_group_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Map Name :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.map_name" maxlength="100" required/>
+						</div>
+						
+						<label class="control-label col-sm-2">Service Status :</label>
+						<div class="col-sm-1">
+							<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="1"/> Enable
+						</div>
+						<div class="col-sm-1">
+							<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="2"/> Disable
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Map Address :</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" ng-model="data.map_address" maxlength="255"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Poly Line :</label>
+						<div class="col-sm-2" ng-repeat="r in lines">
+							<input type="checkbox" ng-checked="isSelected(r)" ng-click="updateSelected($event, r)"/> {{r.name}}
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="text-right">
+			<button class="btn btn-sm btn-primary" type="button" ng-click="save(data);" ng-disabled="isClean() || data.lines.length == 0 || formEdit.$invalid">
+				<i class="fa fa-check"></i> {{buttonText}}
+			</button>
+			<button class="btn btn-sm" type="button" ng-click="cancel()"><i class="fa fa-times"></i> Cancel</button>  
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var datePickConfig	= {autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'};
+    jQuery('#reg_date').datepicker(datePickConfig);    
+});
+</script>

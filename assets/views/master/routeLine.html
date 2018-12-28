@@ -1,0 +1,73 @@
+<header class="header bg-white b-b clearfix">
+	<div class="row m-t-sm">
+		<div class="col-sm-8 m-b-xs">
+			<div class="btn-group">
+				<button type="button" class="btn btn-sm btn-default" title="Refresh" ng-click="setPage()"><i class="fa fa-refresh"></i></button>
+				<button type="button" class="btn btn-sm btn-default" title="Remove" ng-click="trash()"><i class="fa fa-trash-o"></i></button>
+				<button type="button" class="btn btn-sm btn-default" title="Create" ng-click="open(data, 'md')"><i class="fa fa-plus"></i></button>
+			</div>
+		</div>
+		<div class="col-sm-4 m-b-xs">
+			<div class="input-group">
+				<input type="text" class="input-sm form-control" placeholder="Search" ng-model="crit.name" ng-keypress="enterPressed($event)"/>
+				<span class="input-group-btn">
+					<button class="btn btn-sm btn-default" type="button" ng-click="setPage()"><i class="fa fa-search"></i></button>
+				</span>
+			</div>
+		</div>
+	</div>
+</header>
+<section class="scrollable wrapper w-f">
+	<section class="panel panel-default">
+		<div class="table-responsive">
+			<table class="table table-striped m-b-none">
+				<thead>
+					<tr>
+						<th class="text-center" width="20"><input type="checkbox" ng-checked="isAllSelected()" ng-click="selectAll($event)"/></th>
+						<th class="text-center" width="20">No</th>
+						<th class="text-center">Code</th>
+						<th class="text-center">Bus Route (Line)</th>
+						<th class="text-center">Type</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="r in rows.content">
+						<td><input type="checkbox" ng-checked="isSelected(r)" ng-click="updateSelected($event, r)"/></td>
+						<td class="text-center">{{(page-1)*size + $index + 1}}</td>
+						<td class="text-center">{{r.code}}</td>
+						<td>{{r.name}}</td>
+						<td class="text-center">{{r.line_type}}</td>
+						<td class="text-center">
+							<button type="button" class="btn btn-primary" ng-click="open(r, 'md')"><i class="fa fa-pencil"></i></button>
+							<button type="button" class="btn btn-danger" ng-click="remove(r)"><i class="fa fa-trash-o"></i></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+</section>
+<footer class="footer bg-white b-t" ng-show="rows.totalPage > 1">
+	<div class="row m-t-sm">
+		<div class="col-sm-7 m-b-xs">
+		</div>
+		<div class="col-sm-1">
+			<button ng-disabled="rows.first" ng-click="setPage(1)" class="btn btn-sm btn-default btn-block"><i class="fa fa-angle-double-left"></i> </button>
+		</div>
+		<div class="col-sm-1">
+			<button ng-disabled="rows.first" ng-click="setPage(page - 1)" class="btn btn-sm btn-default btn-block"><i class="fa fa-angle-left"></i> </button>
+		</div>
+		<div class="col-sm-1 m-b-xs">
+			<select class="form-control" ng-model="cpage" ng-change="setPage(cpage)">
+				<option ng-repeat="p in pages" ng-selected="p===page" value="{{p}}">{{p}}</option>
+			</select>
+		</div>
+		<div class="col-sm-1">
+			<button ng-disabled="rows.last" ng-click="setPage(page + 1)" class="btn btn-sm btn-default btn-block"> <i class="fa fa-angle-right"></i></button>
+		</div>
+		<div class="col-sm-1">
+			<button ng-disabled="rows.last" ng-click="setPage(rows.totalPage)" class="btn btn-sm btn-default btn-block"> <i class="fa fa-angle-double-right"></i></button>
+		</div>
+	</div>	
+</footer>

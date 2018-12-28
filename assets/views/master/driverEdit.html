@@ -1,0 +1,83 @@
+<div class="modal-content">
+	<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times"></i> </button>
+	<div class="modal-header">
+		<h3 class="modal-title" ng-model="title">{{title}}</h3>
+	</div>
+	<div class="modal-body">
+		<form name="formEdit" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="col-sm-12">
+				
+					<div class="form-group">
+						<label class="control-label col-sm-2">Driver ID :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.code" readonly="readonly" id="code"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Service Group :</label>
+						<div class="col-sm-2">
+							<select class="form-control" ng-model="data.service_group_id" id="service_group_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in serviceGroups" value="{{p.id}}" ng-selected="data.service_group_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+						
+						<label class="control-label col-sm-2">Service Status :</label>
+						<div class="col-sm-1">
+							<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="1"/> Enable
+						</div>
+						<div class="col-sm-1">
+							<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="2"/> Disable
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Name :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.name" maxlength="255" required/>
+						</div>
+						
+						<label class="control-label col-sm-2">Telephone :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.telp" maxlength="12"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Mobile Phone :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.phone" maxlength="16"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Trans Company :</label>
+						<div class="col-sm-2">
+							<select class="form-control" ng-model="data.transport_company_id" id="transport_company_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in transCompanies" value="{{p.id}}" ng-selected="data.transport_company_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+						
+						<label class="control-label col-sm-2">Fax :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.fax" maxlength="12"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Email :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="email" ng-model="data.email" maxlength="255"/>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="text-right">
+			<button class="btn btn-sm btn-primary" type="button" ng-click="save(data);" ng-disabled="isClean() || formEdit.$invalid">
+				<i class="fa fa-check"></i> {{buttonText}}
+			</button>
+			<button class="btn btn-sm" type="button" ng-click="cancel()"><i class="fa fa-times"></i> Cancel</button>  
+		</div>
+	</div>
+</div>

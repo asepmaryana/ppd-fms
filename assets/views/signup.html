@@ -1,0 +1,29 @@
+			<header class="panel-heading text-center">
+          		<strong>Sign Up</strong>
+        	</header>
+        	<form name="formLogin" role="form" class="panel-body wrapper-lg">
+        		<div class="form-group">
+            		<label class="control-label">Username</label>
+            		<input type="text" placeholder="" class="form-control input-lg" ng-model="data.username" required/>
+          		</div>
+          		<div class="form-group">
+            		<label class="control-label">Password</label>
+            		<input type="password" placeholder="" class="form-control input-lg" ng-model="data.password" required/>
+          		</div>
+          		<div class="form-group">
+            		<label class="control-label">Confirm</label>
+            		<input type="password" placeholder="" class="form-control input-lg" ng-model="data.confirm" required/>
+          		</div>
+          		<div class="form-group">
+            		<label class="control-label">Firstname</label>
+            		<input type="text" placeholder="" class="form-control input-lg" ng-model="data.firstname" required/>
+          		</div>
+          		<div class="form-group">
+            		<label class="control-label">Lastname</label>
+            		<input type="text" placeholder="" class="form-control input-lg" ng-model="data.lastname"/>
+          		</div>
+          		<button type="button" class="btn btn-primary" ng-click="signup(data)" ng-disabled="formLogin.$invalid">Sign Up</button>
+          		<div class="line line-dashed"></div>
+          		<p class="text-muted text-center"><small>Do you have an account ?</small></p>
+          		<a href="#/welcome/signin" class="btn btn-default btn-block">Sign In</a>
+        	</form>

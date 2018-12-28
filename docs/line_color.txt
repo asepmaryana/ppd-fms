@@ -1,0 +1,6 @@
+Red FF0000
+Blue 00AEEF
+Green 39B54A
+Pink FE29A7
+Purple 932AF5
+Dark Brown 724315

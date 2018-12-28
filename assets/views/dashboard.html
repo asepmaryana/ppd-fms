@@ -1,0 +1,82 @@
+<section class="scrollable padder">
+	<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+		<li><a href="#/app/dashboard"><i class="fa fa-home"></i> Home</a></li>
+		<li class="active">Dashboard</li>
+	</ul>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="row">
+			<div class="col-sm-4">
+				<section class="panel panel-default">
+					<header class="panel-heading font-bold">Vehicle Registration Status</header>
+					<div class="panel-body"><flot dataset="dataset" options="options" height="170px" width="100%"></flot></div>
+				</section>
+			</div>
+			<div class="col-sm-4">
+				<section class="panel panel-default">
+					<header class="panel-heading font-bold">Vehicle Service Status</header>
+					<div class="panel-body"><flot dataset="bsDataset" options="bsOptions" height="170px" width="100%"></flot></div>
+				</section>
+			</div>
+			<div class="col-sm-4">
+				<section class="panel panel-default">
+					<header class="panel-heading font-bold">Route Deviation</header>
+					<div class="panel-body"><flot dataset="rdlDataset" options="rdlOptions" height="170px" width="100%"></flot></div>
+				</section>
+			</div>
+			<div class="col-sm-12">
+				<section class="panel panel-default">
+					<header class="panel-heading font-bold">Today Vehicle Operation Distance (KM)</header>
+					<div class="panel-body"><flot dataset="odDataset" options="odOptions" height="170px" width="100%"></flot></div>
+				</section>
+			</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="row">
+			<div class="col-sm-12">
+				<section class="panel panel-default">
+					<header class="panel-heading"><strong>Speed Violation Info</strong></header>
+					<table class="table table-striped m-b-none">
+						<thead>
+							<tr>
+								<th class="text-center">Reg Date</th>
+								<th class="text-center">Car Number</th>
+								<th class="text-center">Speed</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in speedViolations.content">
+								<td class="text-center">{{r.reg_date_time}}</td>
+								<td class="text-center">{{r.car_number}}</td>
+								<td class="text-right">{{r.speed}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</div>
+			<div class="col-sm-12">
+				<section class="panel panel-default">
+					<header class="panel-heading"><strong>Route Deviation Info</strong></header>
+					<table class="table table-striped m-b-none">
+						<thead>
+							<tr>
+								<th class="text-center">Reg Date</th>
+								<th class="text-center">Car Number</th>
+								<th class="text-center">Distance</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in routeDeviations.content">
+								<td class="text-center">{{r.reg_date_time}}</td>
+								<td class="text-center">{{r.car_number}}</td>
+								<td class="text-right">{{r.distance}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+			</div>
+			</div>
+		</div>
+	</div>
+</section>

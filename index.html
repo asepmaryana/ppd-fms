@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="" id="html">
+<head>
+	<meta charset="utf-8" />
+	<title>FMS Application</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+	<link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="assets/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="assets/css/font.css" type="text/css" />
+	<link rel="stylesheet" href="assets/js/calendar/bootstrap_calendar.css" type="text/css" />
+	<link rel="stylesheet" href="assets/lib/sweetalert/sweetalert.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="assets/lib/bootstrap-datepicker/bootstrap-datepicker.min.css" type="text/css"/>
+	<link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+	<link rel="stylesheet" href="assets/css/custom.css" type="text/css" />
+	<!--[if lt IE 9]>
+    <script src="assets/js/ie/html5shiv.js"></script>
+    <script src="assets/js/ie/respond.min.js"></script>
+    <script src="assets/js/ie/excanvas.js"></script>
+	<![endif]-->
+</head>
+<body ng-app="app">
+	<div class="preloader">
+		<svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+		</svg>
+	</div>
+	<div ui-view></div>
+	<script src="assets/js/jquery.min.js"></script>
+  	<script src="assets/js/bootstrap.js"></script>
+  	<script src="assets/js/app.js"></script>
+  	<script src="assets/js/app.plugin.js"></script>
+  	<script src="assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+  	<!--
+  	<script src="assets/js/charts/easypiechart/jquery.easy-pie-chart.js"></script>
+  	<script src="assets/js/charts/sparkline/jquery.sparkline.min.js"></script>
+  	<script src="assets/js/charts/flot/jquery.flot.min.js"></script>
+  	<script src="assets/js/charts/flot/jquery.flot.tooltip.min.js"></script>
+  	<script src="assets/js/charts/flot/jquery.flot.resize.js"></script>
+  	<script src="assets/js/charts/flot/jquery.flot.grow.js"></script>  	
+  	<script src="assets/js/calendar/bootstrap_calendar.js"></script>  	
+  	<script src="assets/js/sortable/jquery.sortable.js"></script>
+  	-->
+  	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAN80JIVnzv9mIHkliT3P7y4Q9bhJDNzfM&language=en"></script>
+  	<script src="assets/lib/sweetalert/sweetalert.min.js"></script>
+  	<script src="assets/lib/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  	<script src="assets/lib/moment/moment.js"></script>
+	<script src="assets/lib/moment/locale/id.js"></script>
+	<!-- flot -->
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="assets/lib/flot/excanvas.min.js"></script><![endif]-->
+	<script src="assets/lib/flot/jquery.flot.js"></script>
+	<script src="assets/lib/flot/jquery.flot.categories.js"></script>
+	<script src="assets/lib/flot/jquery.flot.pie.js"></script>
+	<script src="assets/lib/flot/jquery.flot.resize.js"></script>
+	<script src="assets/lib/flot/jquery.flot.time.js"></script>
+	<script src="assets/lib/flot/jquery.flot.stack.js"></script>
+	<script src="assets/lib/flot/jquery.flot.symbol.js"></script>
+	<script src="assets/lib/flot/jquery.flot.image.js"></script>
+	<script src="assets/lib/flot/jquery.flot.crosshair.js"></script>
+	<script src="assets/lib/flot/jquery.flot.errorbars.js"></script>
+	<script src="assets/lib/flot/jquery.flot.threshold.js"></script>
+	<script src="assets/lib/flot/jquery.flot.selection.js"></script>
+	<script src="assets/lib/flot/jquery.flot.navigate.js"></script>
+	<script src="assets/lib/flot/jquery.flot.labels.js"></script>
+	<script src="assets/lib/flot/jquery.flot.axislabels.js"></script>
+	<script src="assets/lib/flot/jquery.flot.tooltip.min.js"></script>
+	<script src="assets/lib/flot/jquery.colorhelpers.js"></script>
+	
+	<!-- angular -->
+	<script src="assets/lib/angular/angular.js"></script>
+	<script src="assets/lib/ui-router/angular-ui-router.js"></script>	
+	<script src="assets/lib/angular-animate/angular-animate.js"></script>
+	<script src="assets/lib/angular-resource/angular-resource.min.js"></script>	
+	<script src="assets/lib/angular-cookies/angular-cookies.min.js"></script>
+	<script src="assets/lib/angular-sanitize/angular-sanitize.min.js"></script>
+	<script src="assets/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="assets/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script src="assets/lib/angular-moment/angular-moment.min.js"></script>
+	<script src="assets/lib/angular-ui-select2/src/select2.js"></script>
+	<script src="assets/lib/angular-flot/angular-flot.js"></script>
+	<script src="assets/lib/underscore/underscore-min.js"></script>
+	<script src="assets/lib/bootbox/bootbox.js"></script>    
+	<script src="assets/lib/ocLazyLoad.min.js"></script>
+	
+	<!-- application -->
+	<script type="text/javascript">
+		if (!window.location.origin) window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+		var BASE_URL= window.location.origin+window.location.pathname;
+		if(BASE_URL.substr(-1) == '/') BASE_URL = BASE_URL.substring(0, BASE_URL.length-1);		
+	</script>
+	<script src="assets/app/app.js"></script>
+	<script src="assets/app/app.constant.js"></script>
+	<script src="assets/app/app.directive.js"></script>
+	<script src="assets/app/app.controller.js"></script>
+</body>
+</html>

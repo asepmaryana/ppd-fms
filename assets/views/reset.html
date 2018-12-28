@@ -1,0 +1,13 @@
+			<header class="panel-heading text-center">
+          		<strong>Reset</strong>
+        	</header>
+        	<form class="panel-body wrapper-lg">
+        		<div class="form-group">
+            		<label class="control-label">Username</label>
+            		<input type="text" placeholder="" ng-model="data.username" ng-keypress="enterPressed($event)" class="form-control input-lg"/>
+          		</div>
+          		<button type="button" ng-click="reset(data)" class="btn btn-primary">Reset</button>
+          		<div class="line line-dashed"></div>
+          		<p class="text-muted text-center"><small>Do you have an account ?</small></p>
+          		<a href="#/welcome/signin" class="btn btn-default btn-block">Sign In</a>
+        	</form>

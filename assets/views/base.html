@@ -1,0 +1,173 @@
+<section class="vbox">
+	<header class="bg-dark dk header navbar navbar-fixed-top-xs">
+		<div class="navbar-header aside-md">
+        	<a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+          		<i class="fa fa-bars"></i>
+        	</a>
+        	<a href="#/app/dashboard" class="navbar-brand" data-toggle="fullscreen"><img src="assets/images/len_logo.png"/> FMS Len</a>
+        	<a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
+          		<i class="fa fa-cog"></i>
+        	</a>
+      	</div>
+      	<ul class="nav navbar-nav hidden-xs">
+      		<li>
+      			<a href="#/app/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+      		</li>
+      		<li>
+      			<a href="#/app/tracking"><i class="fa fa-map-marker"></i> Location &amp; Tracking</a>
+      		</li>
+      		<li class="dropdown">
+      			<a class="dropdown-toggle dker" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Station &amp; Route <i class="fa fa-caret-down"></i> </a>
+      			<ul class="dropdown-menu">
+      				<li><a href="#/app/station"> Station</a></li>
+      				<li><a href="#/app/line"> Line</a></li>
+      				<li><a href="#/app/routeMap"> Route Map</a></li>
+      				<!-- <li><a href="#/app/routeLine"> Route Line</a></li> -->
+      				<li><a href="#/app/garage"> Garage</a></li>
+      			</ul>
+      		</li>
+      		<li class="dropdown">
+      			<a class="dropdown-toggle dker" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bus &amp; Driver <i class="fa fa-caret-down"></i> </a>
+      			<ul class="dropdown-menu">
+      				<li><a href="#/app/bus"> Bus Agent</a></li>
+      				<li><a href="#/app/driver"> Driver Management</a></li>
+      			</ul>
+      		</li>
+      		<li class="dropdown">
+      			<a class="dropdown-toggle dker" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operation <i class="fa fa-caret-down"></i> </a>
+      			<ul class="dropdown-menu">
+      				<li><a href="#/app/busConnStatus"> Bus Connection Status</a></li>
+      				<li><a href="#/app/busDrivingRecord"> Bus Driving Record</a></li>
+      				<li><a href="#/app/busSpeedRecord"> Bus Speed Record</a></li>
+      				<li><a href="#/app/busViolationRecord"> Bus Violation History</a></li>
+      				<li><a href="#/app/stationPassedRecord"> Station Passed by Bus</a></li>
+      				<li><a href="#/app/busPassedRecord"> Bus Passed By Station</a></li>
+      			</ul>
+      		</li>
+      		<li class="dropdown">
+      			<a class="dropdown-toggle dker" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">System Config <i class="fa fa-caret-down"></i> </a>
+      			<ul class="dropdown-menu">
+      				<li><a href="#/app/serviceGroup"> Service Group</a></li>
+      				<li><a href="#/app/transCompany"> Transport Company</a></li>
+      				<li><a href="#/app/manCompany"> Manufacture Company</a></li>
+      				<li><a href="#/app/routeLine"> Bus Route</a></li>
+      				<li><a href="#/app/busDevice"> Bus Device</a></li>
+      			</ul>
+      		</li>
+      		<li class="dropdown">
+      			<a class="dropdown-toggle dker" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <i class="fa fa-caret-down"></i> </a>
+      			<ul class="dropdown-menu">
+      				<li><a href="#/app/role"> Roles</a></li>
+      				<li><a href="#/app/user"> Users</a></li>
+      			</ul>
+      		</li>
+      	</ul>
+      	<ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+      		<li class="dropdown">
+      			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            		<span class="thumb-sm avatar pull-left">
+              			<img ng-if="user.foto == null" src="assets/images/users/user.png"/>
+						<img ng-if="user.foto" ng-src="{{user.foto}}"/>
+            		</span>
+            		{{user.firstname}} <b class="caret"></b>
+          		</a>
+          		<ul class="dropdown-menu animated fadeInRight">
+          			<span class="arrow top"></span>
+          			<li>
+          				<a href="#/app/setting">Settings</a>
+          			</li>
+          			<li>
+          				<a href="#/app/profile">Profile</a>
+          			</li>
+          			<li class="divider"></li>
+          			<li>
+              			<a ng-click="logout()">Logout</a>
+            		</li>
+          		</ul>
+      		</li>
+      	</ul>
+	</header>
+	<section>
+		<section class="hbox stretch">
+			<aside class="bg-light lter b-r aside-md hidden-print" id="nav" ng-show="showTracking">
+				<section class="vbox">
+					<section class="w-f scrollable">
+						<div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
+							<nav class="nav-primary hidden-xs">
+								<ul class="nav">
+				                    <li>
+				                    	<a href="javascript:void(0)">
+				                        	<span class="pull-right">
+				                          		<i class="fa fa-angle-down text"></i>
+				                          		<i class="fa fa-angle-up text-active"></i>
+				                        	</span>
+				                        	<span>Bus Information</span>
+				                      	</a>
+				                      	<ul class="nav lt show">
+				                      		<li ng-repeat="marker in busMarkers | orderBy : 'code'">
+					                        	<a ng-click="openInfoWindow($event, marker)">
+					                        		<b class="badge {{marker.connection_status_id == 1 ? 'bg-success' : 'bg-default'}} pull-right">{{marker.connection_status}}</b>					                            	
+					                            	<span>{{marker.title}} {{marker.label}}</span>
+					                          	</a>
+					                        </li>
+				                      	</ul>
+				                    </li>
+				                    <li>
+				                    	<a href="javascript:void(0)">
+				                        	<span class="pull-right">
+				                          		<i class="fa fa-angle-down text"></i>
+				                          		<i class="fa fa-angle-up text-active"></i>
+				                        	</span>
+				                        	<span>Station Information</span>
+				                      	</a>
+				                      	<ul class="nav lt show">
+				                      		<li ng-repeat="station in stationMarkers | orderBy : 'code'">
+					                        	<a ng-click="openInfoWindow($event, station)">
+					                            	<span>{{station.code}} {{station.name}}</span>
+					                          	</a>
+					                        </li>
+				                      	</ul>
+				                    </li>
+								</ul>
+							</nav>
+						</div>
+					</section>
+					<!--
+					<footer class="footer lt hidden-xs b-t b-light">
+						<a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-default btn-icon">
+                			<i class="fa fa-angle-left text"></i>
+                			<i class="fa fa-angle-right text-active"></i>
+              			</a>
+              			<div class="btn-group hidden-nav-xs">
+                			<button type="button" title="Chats" class="btn btn-icon btn-sm btn-default" data-toggle="dropdown" data-target="#chat"><i class="fa fa-comment-o"></i></button>
+                			<button type="button" title="Contacts" class="btn btn-icon btn-sm btn-default" data-toggle="dropdown" data-target="#invite"><i class="fa fa-facebook"></i></button>
+              			</div>
+					</footer>
+					-->
+				</section>
+			</aside>
+			<section id="content">
+				<section class="vbox">
+					<div ui-view="page"></div>
+				</section>
+				<a class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+        	</section>
+        	<aside class="bg-light lter b-l aside-md hide" id="notes">
+          		<div class="wrapper">Notification</div>
+        	</aside>
+		</section>
+	</section>
+	
+	<footer class="bg-dark dk footer lt hidden-xs b-t b-light text-center">
+		Copyright &copy; 2018 PT. Len Industri (Persero)
+	</footer>
+	
+</section>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#html').removeClass('bg-dark');
+	if(!$('.dropdown-toggle').hasClass('show')){
+		$('.dropdown-toggle').dropdown();
+	}
+});
+</script>

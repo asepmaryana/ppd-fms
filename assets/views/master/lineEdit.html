@@ -1,0 +1,58 @@
+<div class="modal-content">
+	<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times"></i> </button>
+	<div class="modal-header">
+		<h3 class="modal-title" ng-model="title">{{title}}</h3>
+	</div>
+	<div class="modal-body">
+		<form name="formEdit" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="col-sm-12">
+				
+					<div class="form-group">
+						<label class="control-label col-sm-1">Name :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.name" maxlength="10"/>
+						</div>
+						<label class="control-label col-sm-1">Color :</label>
+						<div class="col-sm-3">
+							<table border="0" cellpadding="3" cellspacing="3">
+								<tr>
+									<td class="text-center"><img src="assets/images/e80030.png"/></td>
+									<td class="text-center"><img src="assets/images/00ade0.png"/></td>
+									<td class="text-center"><img src="assets/images/45d800.png"/></td>
+									<td class="text-center"><img src="assets/images/d8009f.png"/></td>
+									<td class="text-center"><img src="assets/images/7500e1.png"/></td>
+									<td class="text-center"><img src="assets/images/c89a1e.png"/></td>									
+								</tr>
+								<tr>
+									<td class="text-center"><input type="radio" name="color" ng-model="data.color" ng-change="setColor('e80030')" value="e80030"/></td>
+									<td class="text-center"><input type="radio" name="color" ng-model="data.color" ng-change="setColor('00ade0')" value="00ade0"/></td>
+									<td class="text-center"><input type="radio" name="color" ng-model="data.color" ng-change="setColor('45d800')" value="45d800"/></td>
+									<td class="text-center"><input type="radio" name="color" ng-model="data.color" ng-change="setColor('d8009f')" value="d8009f"/></td>
+									<td class="text-center"><input type="radio" name="color" ng-model="data.color" ng-change="setColor('7500e1')" value="7500e1"/></td>
+									<td class="text-center"><input type="radio" name="color" ng-model="data.color" ng-change="setColor('c89a1e')" value="c89a1e"/></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-sm-5 alert alert-info">
+                    		<button type="button" class="close" data-dismiss="alert">&times;</button>
+                    		<p>Gunakan <strong><i>right click</i></strong> untuk membuat point line pada posisi yang diinginkan.</p>
+                  		</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12" id="map" style="height: 350px"></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="text-right">
+			<button class="btn btn-sm btn-primary" type="button" ng-click="save(data);" ng-disabled="isClean() || formEdit.$invalid">
+				<i class="fa fa-check"></i> {{buttonText}}
+			</button>
+			<button class="btn btn-sm" type="button" ng-click="cancel()"><i class="fa fa-times"></i> Cancel</button>  
+		</div>
+	</div>
+</div>

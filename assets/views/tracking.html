@@ -1,0 +1,151 @@
+<section class="scrollable padder">
+	<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+		<li><a href="#/app/dashboard"><i class="fa fa-home"></i> Home</a></li>
+		<li class="active">Tracking</li>
+	</ul>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="panel panel-default">
+				<div class="panel-body" id="map" style="height: 400px"></div>
+			</section>
+		</div>
+	</div>
+	<div class="row" ng-show="busDisplayed">
+		<div class="col-md-4">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">Bus Info</header>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="background-color: #eee; width: 40%">Car Number</td>
+								<td style="color:#0072BC; font-weight: bold;">{{bus.car_number}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Route (Line)</td>
+								<td>{{bus.route_line}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Bus ID</td>
+								<td>{{bus.code}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Made Corp</td>
+								<td>{{bus.manufacture_company}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Trans Corp</td>
+								<td>{{bus.transport_company}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Group Name</td>
+								<td>{{bus.service_group}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+		<div class="col-md-4">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">Location &amp; Speed</header>
+				<div class="panel-body" style="padding-left: 10px; padding-right: 10px; padding-top: 20px">
+					<div class="row">
+						<div class="col-sm-12">
+							
+						</div>
+						<div class="col-sm-12">
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td style="background-color: #eee; width: 30%">Latitude</td>
+										<td style="width: 80%">{{bus.latitude}}</td>
+									</tr>
+									<tr>
+										<td style="background-color: #eee;">Longitude</td>
+										<td>{{bus.longitude}}</td>
+									</tr>
+									<tr>
+										<td style="background-color: #eee;">Speed</td>
+										<td>{{bus.speed}} Km/h</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="col-md-4">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">Operation Summary</header>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="background-color: #eee; width: 40%">Connection</td>
+								<td><b class="badge {{bus.connection_status_id == 1 ? 'bg-success' : 'bg-default'}}">{{bus.connection_status}}</b></td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Alarm Status</td>
+								<td><b class="badge {{bus.alarm_status_id == 2 ? 'bg-danger' : 'bg-default'}}">{{bus.alarm_status}}</b></td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Start Time</td>
+								<td>{{bus.start_time}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Last Time</td>
+								<td>{{bus.last_time}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<button type="button" class="btn btn-default btn-xs pull-right" ng-click="hideBus()"><i class="fa fa-times"></i> Hide</button>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="row" ng-show="stationDisplayed">
+		<div class="col-md-4">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">Station Info</header>
+				<div class="panel-body">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="background-color: #eee; width: 40%">Short Name</td>
+								<td style="color:#0072BC; font-weight: bold;">{{station.short_name}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Station Name</td>
+								<td>{{station.name}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Location</td>
+								<td>[{{station.latitude}} , {{station.longitude}}]</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Station ID</td>
+								<td>{{station.code}}</td>
+							</tr>
+							<tr>
+								<td style="background-color: #eee">Group Name</td>
+								<td>{{station.service_group}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+		<div class="col-md-4">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">History Pas The Station</header>
+				<div class="panel-body">
+				</div>
+			</section>
+		</div>
+		<div class="col-md-4">
+			<button type="button" class="btn btn-default btn-xs pull-right" ng-click="hideStation()"><i class="fa fa-times"></i> Hide</button>
+		</div>
+	</div>
+</section>

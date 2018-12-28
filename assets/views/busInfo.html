@@ -1,0 +1,152 @@
+<section class="scrollable padder">
+	<ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+		<li><a href="#/app/dashboard"><i class="fa fa-home"></i> Home</a></li>
+		<li class="active">Bus Info</li>
+	</ul>
+	<div class="row">
+		<div class="col-md-12">
+			<section class="panel panel-default">
+				<header class="panel-heading font-bold">Bus Info</header>
+				<div class="panel-body">
+					<form name="formEdit" class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="control-label col-sm-2">Reg Date :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.reg_date" id="reg_date" maxlength="10" required/>
+							</div>
+							
+							<label class="control-label col-sm-2">Made Date :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.made_date" id="made_date" maxlength="10" required/>
+							</div>
+							
+							<label class="control-label col-sm-2">Route (Line) :</label>
+							<div class="col-sm-2">
+								<select class="form-control" ng-model="data.route_line_id" id="route_line_id" required>
+									<option value="">- Select -</option>
+									<option ng-repeat="p in routeLines" value="{{p.id}}" ng-selected="data.route_line_id == p.id">{{p.name}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-sm-2">Bus ID :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.code" readonly="readonly" id="code"/>
+							</div>
+							
+							<label class="control-label col-sm-2">Device ID :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.name" maxlength="255" required/>
+							</div>
+							
+							<label class="control-label col-sm-2">Car Number :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.car_number" maxlength="12" required/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-sm-2">Made Corp :</label>
+							<div class="col-sm-2">
+								<select class="form-control" ng-model="data.manufacture_company_id" id="manufacture_company_id">
+									<option value="">- Select -</option>
+									<option ng-repeat="p in manCompanies" value="{{p.id}}" ng-selected="data.manufacture_company_id == p.id">{{p.name}}</option>
+								</select>
+							</div>
+							
+							<label class="control-label col-sm-2">Service Status :</label>
+							<div class="col-sm-1">
+								<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="1"/> Enable
+							</div>
+							<div class="col-sm-1">
+								<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="2"/> Disable
+							</div>
+							
+							<label class="control-label col-sm-2">Service Group :</label>
+							<div class="col-sm-2">
+								<select class="form-control" ng-model="data.service_group_id" id="service_group_id" required>
+									<option value="">- Select -</option>
+									<option ng-repeat="p in serviceGroups" value="{{p.id}}" ng-selected="data.service_group_id == p.id">{{p.name}}</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-sm-2">Agent Type :</label>
+							<div class="col-sm-2">
+								<select class="form-control" ng-model="data.bus_device_id" id="bus_device_id" required>
+									<option value="">- Select -</option>
+									<option ng-repeat="p in busDevices" value="{{p.id}}" ng-selected="data.bus_device_id == p.id">{{p.name}}</option>
+								</select>
+							</div>
+							
+							<label class="control-label col-sm-2">SW Version :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.software_version" maxlength="10"/>
+							</div>
+							
+							<label class="control-label col-sm-2">Display Icon :</label>
+							<div class="col-sm-2">
+								<table cellpadding="3" cellspacing="3">
+									<tr>
+										<td><img src="assets/images/car_b.gif" border="0" /></td>
+										<td><img src="assets/images/car_r.gif" border="0" /></td>
+										<td><img src="assets/images/car_g.gif" border="0" /></td>
+										<td><img src="assets/images/car_y.gif" border="0" /></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="icon" ng-model="data.icon" value="car_b.gif"/></td>
+										<td><input type="radio" name="icon" ng-model="data.icon" value="car_r.gif"/></td>
+										<td><input type="radio" name="icon" ng-model="data.icon" value="car_g.gif"/></td>
+										<td><input type="radio" name="icon" ng-model="data.icon" value="car_y.gif"/></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-sm-2">Trans Company :</label>
+							<div class="col-sm-2">
+								<select class="form-control" ng-model="data.transport_company_id" id="transport_company_id" required>
+									<option value="">- Select -</option>
+									<option ng-repeat="p in transCompanies" value="{{p.id}}" ng-selected="data.transport_company_id == p.id">{{p.name}}</option>
+								</select>
+							</div>
+							
+							<label class="control-label col-sm-2">Latitude :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.latitude" maxlength="10" required/>
+							</div>
+							
+							<label class="control-label col-sm-2">Longitude :</label>
+							<div class="col-sm-2">
+								<input class="form-control" type="text" ng-model="data.longitude" maxlength="10" required/>
+							</div>
+						</div>
+						
+						<div class="line line-dashed line-lg pull-in"></div>
+						
+						<div class="form-group">
+							<div class="col-sm-12 text-center">
+								<button class="btn btn-sm btn-primary" type="button" ng-click="save(data);" ng-disabled="isClean() || formEdit.$invalid">
+									<i class="fa fa-check"></i> Update
+								</button>
+								<button class="btn btn-sm" type="button" ng-click="reset()"><i class="fa fa-times"></i> Reset</button>
+							</div>
+						</div>
+						
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+	
+</section>
+<script type="text/javascript">
+$(document).ready(function() {
+	var datePickConfig	= {autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'};
+    jQuery('#reg_date').datepicker(datePickConfig);
+    jQuery('#made_date').datepicker(datePickConfig);
+});
+</script>

@@ -1,0 +1,132 @@
+<div class="modal-content">
+	<button type="button" class="close" ng-click="cancel();"><i class="fa fa-times"></i> </button>
+	<div class="modal-header">
+		<h3 class="modal-title" ng-model="title">{{title}}</h3>
+	</div>
+	<div class="modal-body">
+		<form name="formEdit" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="col-sm-12">
+				
+					<div class="form-group">
+						<label class="control-label col-sm-2">Reg Date :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.reg_date" id="reg_date" maxlength="10"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Install Date :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.install_date" id="install_date" maxlength="10"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Made Date :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.made_date" id="made_date" maxlength="10"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Station ID :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.code" readonly="readonly" id="code"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Line Order No :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.line_order_no" maxlength="3"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Route (Line) :</label>
+						<div class="col-sm-2">
+							<select class="form-control" ng-model="data.route_line_id" id="route_line_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in routeLines" value="{{p.id}}" ng-selected="data.route_line_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Station Name :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.name" maxlength="255"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Short Name :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.short_name" maxlength="4"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Station Type :</label>
+						<div class="col-sm-1">
+							<select class="form-control" ng-model="data.station_direct_id" id="station_direct_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in stationDirects" value="{{p.id}}" ng-selected="data.station_direct_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+						<div class="col-sm-1">
+							<select class="form-control" ng-model="data.station_type_id" id="station_type_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in stationTypes" value="{{p.id}}" ng-selected="data.station_type_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Service Status :</label>
+						<div class="col-sm-1">
+							<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="1"/> Enable
+						</div>
+						<div class="col-sm-1">
+							<input type="radio" name="service_status_id" ng-model="data.service_status_id" value="2"/> Disable
+						</div>
+						<label class="control-label col-sm-2">Latitude :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.latitude" maxlength="20"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Longitude :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.longitude" maxlength="20"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2">Service Group :</label>
+						<div class="col-sm-2">
+							<select class="form-control" ng-model="data.service_group_id" id="service_group_id" required>
+								<option value="">- Select -</option>
+								<option ng-repeat="p in serviceGroups" value="{{p.id}}" ng-selected="data.service_group_id == p.id">{{p.name}}</option>
+							</select>
+						</div>
+						<label class="control-label col-sm-2">Address :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.install_address" maxlength="255"/>
+						</div>
+						
+						<label class="control-label col-sm-2">Remark :</label>
+						<div class="col-sm-2">
+							<input class="form-control" type="text" ng-model="data.remark" maxlength="255"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<div class="text-right">
+			<button class="btn btn-sm btn-primary" type="button" ng-click="save(data);" ng-disabled="isClean() || formEdit.$invalid">
+				<i class="fa fa-check"></i> {{buttonText}}
+			</button>
+			<button class="btn btn-sm" type="button" ng-click="cancel()"><i class="fa fa-times"></i> Cancel</button>  
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var datePickConfig	= {autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'};
+    jQuery('#reg_date').datepicker(datePickConfig);
+    jQuery('#install_date').datepicker(datePickConfig);
+    jQuery('#made_date').datepicker(datePickConfig);
+});
+</script>
