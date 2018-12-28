@@ -147,6 +147,30 @@ CREATE TABLE driver
 	FOREIGN KEY(service_status_id) REFERENCES service_status(id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+CREATE TABLE bus_driver
+(
+	bus_id INT,
+	driver_id INT,
+	assign_date DATE,
+	assign_time TIME,
+	UNIQUE(bus_id,driver_id,assign_date,assign_time),
+	FOREIGN KEY(bus_id) REFERENCES bus(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(driver_id) REFERENCES driver(id) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE bus_driver_log
+(
+	id VARCHAR(36) NOT NULL,
+	bus_id INT,
+	driver_id INT,
+	assign_date DATE,
+	assign_time TIME,
+	PRIMARY KEY(id),
+	UNIQUE(bus_id,driver_id,assign_date,assign_time),
+	FOREIGN KEY(bus_id) REFERENCES bus(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY(driver_id) REFERENCES driver(id) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
 CREATE TABLE ad_screen
 (
 	id INT NOT NULL AUTO_INCREMENT,

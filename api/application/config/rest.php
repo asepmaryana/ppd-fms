@@ -205,6 +205,7 @@ $config['auth_override_class_method_http']['auth']['login']['post'] = 'none';
 $config['auth_override_class_method_http']['auth']['signup']['post'] = 'none';
 $config['auth_override_class_method_http']['auth']['reset']['post'] = 'none';
 $config['auth_override_class_method_http']['busDrivingLog']['list']['post'] = 'none';
+$config['auth_override_class_method_http']['bus']['search']['get'] = 'none';
 /*
 |--------------------------------------------------------------------------
 | REST Login Usernames

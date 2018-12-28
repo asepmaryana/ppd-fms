@@ -95,10 +95,25 @@ angular.module('app.controller', ['app.constant', 'ngCookies'])
 			}
 		});
 	};
-	
+	$scope.item	= null;
+	$rootScope.bus	= [];
 	$rootScope.busMarkers 		= [];
 	$rootScope.stationMarkers 	= [];
-	
+	$rootScope.select		= function(item){
+		$scope.item = item;
+		console.log('call from jquery:');
+		console.log(item);
+		var e = jQuery.Event("click");
+		for(var i=0; i<$rootScope.busMarkers.length; i++) {
+			if(item.id == $rootScope.busMarkers[i].bid) $rootScope.openInfoWindow(e, $rootScope.busMarkers[i]);
+		}
+	}
+	$scope.go	= function(){
+		var e = jQuery.Event("click");
+		for(var i=0; i<$rootScope.busMarkers.length; i++) {
+			if($scope.item.id == $rootScope.busMarkers[i].bid) $rootScope.openInfoWindow(e, $rootScope.busMarkers[i]);
+		}
+	}
 	$scope.$on(EVENTS.notAuthorized, function(event) {
 		//swal('Exception', 'Anda tidak diijinkan untuk membuka resource tersebut.');
 		$rootScope.$broadcast('session-expired', {});

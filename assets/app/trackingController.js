@@ -5,13 +5,13 @@ angular.module('app.controller', ['app.constant', 'ngCookies'])
 	$rootScope.$broadcast('tracking-enabled', {});
 	$rootScope.busMarkers 		= [];
 	$rootScope.stationMarkers 	= [];
-	$scope.bus	= null;
+	$rootScope.bus	= [];
 	$scope.station	= null;
 	$scope.busDisplayed = false;
 	$scope.stationDisplayed = false;
 	$scope.busInfo	= function(bid){
 		$http.get(BASE_URL+'/api/bus/info/'+bid).success(function(data){
-			$scope.bus	= data;
+			$rootScope.bus	= data;
 		});
 	}
 	$scope.stationInfo	= function(sid){

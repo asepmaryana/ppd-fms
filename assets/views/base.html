@@ -1,6 +1,6 @@
 <section class="vbox">
 	<header class="bg-dark dk header navbar navbar-fixed-top-xs">
-		<div class="navbar-header aside-md">
+		<div class="navbar-header">
         	<a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
           		<i class="fa fa-bars"></i>
         	</a>
@@ -9,12 +9,20 @@
           		<i class="fa fa-cog"></i>
         	</a>
       	</div>
+      	<div class="navbar-header">
+      		<form class="navbar-form">
+	      		<div class="form-group">
+	      			<input type="text" placeholder="Search Bus..." class="form-control" id="search" ng-disabled="!showTracking"/>
+	      			<button type="button" class="btn btn-success" ng-disabled="!showTracking" ng-click="go()">Go</button>
+	      		</div>
+	      	</form>
+      	</div>
       	<ul class="nav navbar-nav hidden-xs">
       		<li>
       			<a href="#/app/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
       		</li>
       		<li>
-      			<a href="#/app/tracking"><i class="fa fa-map-marker"></i> Location &amp; Tracking</a>
+      			<a href="#/app/tracking"><i class="fa fa-map-marker"></i> Tracking</a>
       		</li>
       		<li class="dropdown">
       			<a class="dropdown-toggle dker" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Station &amp; Route <i class="fa fa-caret-down"></i> </a>
@@ -169,5 +177,19 @@ $(document).ready(function() {
 	if(!$('.dropdown-toggle').hasClass('show')){
 		$('.dropdown-toggle').dropdown();
 	}
+	
+	$('#search').typeahead({
+	    source:  function (query, process) {
+			return $.get(BASE_URL+'/api/bus/search/'+query, {}, function (data) {
+        		console.log(data);
+	            return process(data);
+	        });
+	    },
+	    minLength: 3,
+	    afterSelect: function(item) {
+	    	console.log(item);
+	    	angular.element(document.getElementById('search')).scope().select(item);
+	    }
+	});	
 });
 </script>

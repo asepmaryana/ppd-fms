@@ -11,6 +11,7 @@ class BusModel extends CI_Model
 	    $this->db->select('count(s.id) as total');
 	    
 	    if(isset($crit['code']) && $crit['code'] != '') $this->db->like('lower(s.code)', strtolower(trim($crit['code'])));
+	    if(isset($crit['name']) && $crit['name'] != '') $this->db->like('lower(s.name)', strtolower(trim($crit['name'])));
 	    if(isset($crit['car_number']) && $crit['car_number'] != '') $this->db->like('lower(s.car_number)', strtolower(trim($crit['car_number'])));
 	    if(isset($crit['service_group_id']) && $crit['service_group_id'] != '') $this->db->where('s.service_group_id', $crit['service_group_id']);
 	    if(isset($crit['route_line_id']) && $crit['route_line_id'] != '') $this->db->where('s.route_line_id', $crit['route_line_id']);
@@ -39,6 +40,7 @@ class BusModel extends CI_Model
 	    $this->db->join('connection_status cs', 's.connection_status_id=cs.id', 'left');
 	    
 	    if(isset($crit['code']) && $crit['code'] != '') $this->db->like('lower(s.code)', strtolower(trim($crit['code'])));
+	    if(isset($crit['name']) && $crit['name'] != '') $this->db->like('lower(s.name)', strtolower(trim($crit['name'])));
 	    if(isset($crit['car_number']) && $crit['car_number'] != '') $this->db->like('lower(s.car_number)', strtolower(trim($crit['car_number'])));
 	    if(isset($crit['service_group_id']) && $crit['service_group_id'] != '') $this->db->where('s.service_group_id', $crit['service_group_id']);
 	    if(isset($crit['route_line_id']) && $crit['route_line_id'] != '') $this->db->where('s.route_line_id', $crit['route_line_id']);
@@ -64,6 +66,7 @@ class BusModel extends CI_Model
 	    $this->db->join('connection_status cs', 's.connection_status_id=cs.id', 'left');
 	    
 	    if(isset($crit['code']) && $crit['code'] != '') $this->db->like('lower(s.code)', strtolower(trim($crit['code'])));
+	    if(isset($crit['name']) && $crit['name'] != '') $this->db->like('lower(s.name)', strtolower(trim($crit['name'])));
 	    if(isset($crit['car_number']) && $crit['car_number'] != '') $this->db->like('lower(s.car_number)', strtolower(trim($crit['car_number'])));
 	    if(isset($crit['service_group_id']) && $crit['service_group_id'] != '') $this->db->where('s.service_group_id', $crit['service_group_id']);
 	    if(isset($crit['route_line_id']) && $crit['route_line_id'] != '') $this->db->where('s.route_line_id', $crit['route_line_id']);
@@ -73,6 +76,15 @@ class BusModel extends CI_Model
 	    if(isset($crit['operation_status_id']) && $crit['operation_status_id'] != '') $this->db->where('s.operation_status_id', $crit['operation_status_id']);
 	    if(isset($crit['connection_status_id']) && $crit['connection_status_id'] != '') $this->db->where('s.connection_status_id', $crit['connection_status_id']);
 	    
+	    if($sort != '' && $order != '') $this->db->order_by('s.'.$sort, $order);
+	    return $this->db->get($this->table.' s');
+	}
+	
+	public function search_list($crit, $sort, $order) {
+	    $this->db->select('s.id,s.car_number as name');
+	    if(isset($crit['code']) && $crit['code'] != '') $this->db->like('lower(s.code)', strtolower(trim($crit['code'])));
+	    if(isset($crit['name']) && $crit['name'] != '') $this->db->like('lower(s.name)', strtolower(trim($crit['name'])));
+	    if(isset($crit['car_number']) && $crit['car_number'] != '') $this->db->like('lower(s.car_number)', strtolower(trim($crit['car_number'])));
 	    if($sort != '' && $order != '') $this->db->order_by('s.'.$sort, $order);
 	    return $this->db->get($this->table.' s');
 	}

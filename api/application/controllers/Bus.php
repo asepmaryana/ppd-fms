@@ -98,5 +98,23 @@ class Bus extends REST_Controller
 	    $bus   = $this->BusModel->get_by_id($id)->row();
 	    $this->response($bus, REST_Controller::HTTP_OK);
 	}
+	
+	public function search_get() {
+	    #$data  = [array('id'=>1, 'name'=>'Bandung'), array('id'=>2, 'name'=>'Jakarta'), array('id'=>3, 'name'=>'Bogor')];
+	    #$this->response($data, REST_Controller::HTTP_OK);
+	    
+	    $name           = $this->uri->segment(3);
+	    $name		    = str_replace('_', ' ', $name);
+	    
+	    $crit           = array();
+	    $crit['car_number']   = trim($name);
+	    
+	    $sort	= 'car_number';
+	    $order	= 'asc';
+	    
+	    $rows   = $this->BusModel->search_list($crit, $sort, $order)->result();
+	    $this->response($rows, REST_Controller::HTTP_OK);
+	    
+	}
 }
 ?>
