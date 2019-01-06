@@ -23,7 +23,7 @@ INSERT INTO station_direct(name) VALUES
 	('UP'), ('DOWN');
 	
 INSERT INTO station_type(name) VALUES 
-	('Real Station'), ('Major Point');
+	('Major'), ('Minor');
 	
 INSERT INTO line_type(name) VALUES 
 	('Back <--> Forth'), ('Circulation');

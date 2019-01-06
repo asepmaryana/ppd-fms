@@ -137,6 +137,7 @@ CREATE TABLE driver
 	phone VARCHAR(20),
 	fax VARCHAR(16),
 	email VARCHAR(255),
+	photo VARCHAR(255),
 	transport_company_id INT,
 	service_group_id INT,
 	service_status_id INT,
@@ -223,6 +224,20 @@ CREATE TABLE station
 	FOREIGN KEY(ad_screen_id) REFERENCES ad_screen(id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY(service_group_id) REFERENCES service_group(id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY(service_status_id) REFERENCES service_status(id) ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE halt
+(
+	id INT NOT NULL AUTO_INCREMENT,
+	code VARCHAR(10) NOT NULL,
+	name VARCHAR(255) NOT NULL,
+	short_name VARCHAR(255),
+	reg_date DATE,
+	install_address VARCHAR(255),
+	latitude DOUBLE,
+	longitude DOUBLE,
+	PRIMARY KEY(id),
+	UNIQUE(code)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE transparency
